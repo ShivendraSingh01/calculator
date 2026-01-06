@@ -30,26 +30,27 @@ jobs:
     - name: Sonar Begin
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       run: |
         dotnet-sonarscanner begin \
-          /k:"${{ secrets.SONAR_PROJECT_KEY }}" \
-          /o:"${{ secrets.SONAR_ORG }}" \
-          /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          /k:"calculator-dotnet" \
+          /d:sonar.host.url="${SONAR_HOST_URL}" \
+          /d:sonar.login="${SONAR_TOKEN}"
 
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build --configuration Release
 
     - name: Test with Coverage
       run: |
         dotnet test \
-          --no-build \
           --configuration Release \
           --collect:"XPlat Code Coverage"
 
     - name: Sonar End
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+      run: dotnet-sonarscanner end \
+        /d:sonar.login="${SONAR_TOKEN}"
 
     # ---- Docker Section ----
 
