@@ -12,7 +12,7 @@ public class MathServiceTests
     public void Add_ReturnsCorrectSum()
     {
         var result = _service.Add(2, 3);
-        Assert.Equal(6, result);
+        Assert.Equal(5, result);
     }
 
     [Fact]
