@@ -1,4 +1,4 @@
-name: .NET CI with Sonar & Docker
+name: .NET Simple Calculator
 
 on:
   push:
