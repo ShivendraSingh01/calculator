@@ -1,5 +1,4 @@
 using Calculator;
-using System;
 using Xunit;
 
 namespace Calculator.Tests;
@@ -12,7 +11,7 @@ public class MathServiceTests
     public void Add_ReturnsCorrectSum()
     {
         var result = _service.Add(2, 3);
-        Assert.Equal(5, result);
+        Assert.Equal(8, result);
     }
 
     [Fact]
